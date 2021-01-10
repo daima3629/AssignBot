@@ -30,14 +30,15 @@ class AssignBot(commands.Bot):
             raise ValueError("already assigned.", 1)
 
         if len(self.assign_users[channel_id]) >= 2:
-            raise DeprecationWarning("Two or more users have been assigned to the issue.")
+            raise DeprecationWarning("three or more users have been assigned to the issue.")
         self.assign_users[channel_id].append(user_id)
 
 
-bot = AssignBot(command_prefix="a.")
+bot = AssignBot(command_prefix="a.", description="チャンネルにissueを開き、そのissueにassignできます。\n3人以上がassignしようとすると警告を表示します。")
 
 @bot.command(name="open")
 async def _open(ctx):
+    """issueを開きます。"""
     try:
         bot.open_issue(ctx.channel.id)
     except ValueError:
@@ -46,6 +47,7 @@ async def _open(ctx):
 
 @bot.command()
 async def assign(ctx):
+    """開かれているissueにassignします。"""
     try:
         bot.assign(ctx.channel.id, ctx.author.id)
     except ValueError as e:
@@ -54,11 +56,12 @@ async def assign(ctx):
         elif e.args[1] == 1:
             return await ctx.send("すでにassignしています。")
     except DeprecationWarning:
-        return await ctx.send("すでに2人以上assignしているため、assignできませんでした。", delete_after=5)
+        return await ctx.send("すでに2人assignしているため、assignできませんでした。", delete_after=5)
     await ctx.message.add_reaction("\U0001f44d")
 
 @bot.command()
 async def close(ctx):
+    """issueをcloseします。"""
     try:
         bot.close_issue(ctx.channel.id)
     except ValueError:
