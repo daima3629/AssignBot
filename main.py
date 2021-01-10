@@ -34,7 +34,7 @@ class AssignBot(commands.Bot):
         self.assign_users[channel_id].append(user_id)
 
 
-bot = AssignBot(command_prefix="a!")
+bot = AssignBot(command_prefix="a.")
 
 @bot.command(name="open")
 async def _open(ctx):
