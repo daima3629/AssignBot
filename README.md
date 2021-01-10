@@ -20,3 +20,14 @@ issueを開きます。このコマンドを打ったあとに質問をしてく
 ### LICENSE
 このBotにはMITライセンスが採用されています。  
 全文は[こちら](https://github.com/daima3629/AssignBot/blob/master/LICENSE)です。
+
+### How to invite
+[こちら](https://discord.com/api/oauth2/authorize?client_id=797721278797709312&permissions=84992&scope=bot)からBotを招待できます。  
+必要権限は
+
+- `View Channels`
+- `Send Mesages`
+- `Embed Links`
+- `Read Mesage History`
+
+の4つです。
